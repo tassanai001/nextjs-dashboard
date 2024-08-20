@@ -5,14 +5,12 @@ export const authConfig = {
     signIn: "/login",
   },
   callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
+    signIn({}) {
       return true;
     },
-
     session({ session, token, user }) {
       return session;
     },
-
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
