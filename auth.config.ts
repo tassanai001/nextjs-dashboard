@@ -6,8 +6,13 @@ export const authConfig = {
   },
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
-      return true
+      return true;
     },
+
+    session({ session, token, user }) {
+      return session;
+    },
+
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
@@ -19,7 +24,6 @@ export const authConfig = {
       }
       return true;
     },
-
   },
   providers: [],
 } satisfies NextAuthConfig;
